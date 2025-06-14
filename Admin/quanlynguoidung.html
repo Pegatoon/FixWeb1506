@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý người dùng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ===== RESET + CƠ BẢN ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 220px;
+            background: #343a40;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #007bff;
+        }
+
+        /* ===== MAIN + TOPBAR ===== */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        /* ===== TÌM KIẾM ===== */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .search-bar input {
+            border: none;
+            padding: 8px 12px;
+            outline: none;
+            width: 250px;
+            height: 30px;
+        }
+
+        .search-bar button {
+            border: none;
+            background-color: #eee;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        /* ===== HEADER-PROFILE ===== */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 20px;
+            color: #555;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .profile img {
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        /* ===== BẢNG QUẢN LÝ NGƯỜI DÙNG ===== */
+        .content h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #eee;
+            font-weight: bold;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .actions i {
+            margin: 0 5px;
+            cursor: pointer;
+            color: #444;
+            transition: color 0.2s;
+        }
+
+        .actions i:hover {
+            color: #000;
+        }
+
+        /* ===== TRẠNG THÁI ===== */
+        .status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status.active {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .status.locked {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        /* ===== ICON FONT AWESOME ===== */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+    </style>
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="../Home/image/z6672631562592_50bb74da1db4c2e3f301e11fbb0569fd.jpg" alt="PegaToon Logo" />
+            <h2>PegaToon</h2>
+        </div>
+        <a href="../Home/Dashboard.html">Tổng quan</a>
+        <a href="../Admin/quanlytruyenchuong.html">Quản lý truyện & chương</a>
+        <a href="../Admin/quanlytheloai.html">Quản lý thể loại</a>
+        <a href="../Admin/quanlynguoidung.html" class="active">Quản lý người dùng</a>
+        <a href="../Admin/tacgia.html">Quản lý tác giả</a>
+        <a href="../Admin/baocao.html">Quản lý báo cáo</a>
+        <a href="../Admin/coupons.html">Quản lý coupons</a>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h2>Quản lý người dùng</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm kiếm người dùng...">
+                <button>Tìm</button>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <select>
+                <option>Tất cả vai trò</option>
+                <option>Admin</option>
+                <option>Người dùng</option>
+            </select>
+            <select>
+                <option>Tất cả trạng thái</option>
+                <option>Hoạt động</option>
+                <option>Đã khóa</option>
+            </select>
+
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên người dùng</th>
+                    <th>Ảnh đại diện</th>
+                    <th>Vai trò</th>
+                    <th>Trạng thái</th>
+                    <th>Ngày tạo</th>
+                    <th>Loại đăng nhập</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyễn Văn A</td>
+                    <td><img src="https://via.placeholder.com/40" class="avatar"></td>
+                    <td>Admin</td>
+                    <td><span class="status active">Hoạt động</span></td>
+                    <td>2024-01-10</td>
+                    <td>Email</td>
+                    <td class="actions">
+                        <i class="fas fa-eye" title="Xem"></i>
+                        <i class="fas fa-edit" title="Sửa"></i>
+                        <i class="fas fa-trash-alt" title="Xóa"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Trần Thị B</td>
+                    <td><img src="https://via.placeholder.com/40" class="avatar"></td>
+                    <td>Người dùng</td>
+                    <td><span class="status locked">Đã khóa</span></td>
+                    <td>2024-03-05</td>
+                    <td>Google</td>
+                    <td class="actions">
+                        <i class="fas fa-eye" title="Xem"></i>
+                        <i class="fas fa-edit" title="Sửa"></i>
+                        <i class="fas fa-trash-alt" title="Xóa"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
